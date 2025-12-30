@@ -1,278 +1,670 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es-AR" class="scroll-smooth">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <!-- 
+    =======================================================================
+    🎨 CONFIGURACIÓN Y ESTILOS (HEAD)
+    =======================================================================
+    -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Docente | Robótica y Programación</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    
+    <!-- Tipografía Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Estilos Personalizados -->
+    <style>
+        :root {
+            --primary: #2563eb;
+            --secondary: #0f172a;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+            color: #334155;
+            overflow-x: hidden;
+        }
 
-  <!-- =====================================================
-       TÍTULO Y META
-       ===================================================== -->
-  <title>Luis Arguello | Docente de Robótica y Programación</title>
-  <meta name="description" content="CV profesional de Docente de Robótica y Programación Educativa para nivel primario y secundario.">
+        /* Glassmorphism */
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+        }
 
-  <!-- =====================================================
-       ESTILOS PREMIUM (MODERNOS + ANIMACIONES)
-       ===================================================== -->
-  <style>
-    /* ---------- RESET BÁSICO ---------- */
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
 
-    /* ---------- ESTILO GENERAL ---------- */
-    body {
-      font-family: 'Segoe UI', system-ui, sans-serif;
-      background: linear-gradient(135deg, #020617, #0f172a);
-      color: #e5e7eb;
-      line-height: 1.6;
-    }
+        .glass-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 10px 10px -5px rgba(0, 0, 0, 0.01);
+            border-color: #bfdbfe;
+        }
 
-    a {
-      color: inherit;
-    }
+        /* Animaciones */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
 
-    /* ---------- CONTENEDOR ---------- */
-    .container {
-      max-width: 1100px;
-      margin: auto;
-      padding: 2.5rem 1.5rem;
-    }
+        .animate-on-scroll {
+            opacity: 0;
+            animation-fill-mode: forwards;
+        }
 
-    /* ---------- HEADER / PERFIL ---------- */
-    header {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-    }
+        .animate-on-scroll.is-visible {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
 
-    .profile {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 2.5rem;
-      animation: fadeIn 1.2s ease;
-    }
+        /* Decoración de fondo */
+        .blob-bg {
+            position: absolute;
+            z-index: -1;
+            filter: blur(80px);
+            opacity: 0.5;
+        }
 
-    .profile img {
-      width: 170px;
-      height: 170px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 4px solid #38bdf8;
-      box-shadow: 0 0 25px rgba(56,189,248,0.4);
-    }
-
-    .profile h1 {
-      font-size: 2.8rem;
-      margin-bottom: 0.5rem;
-    }
-
-    .profile p {
-      font-size: 1.2rem;
-      color: #94a3b8;
-    }
-
-    /* ---------- BOTÓN ---------- */
-    .btn {
-      display: inline-block;
-      margin-top: 1.2rem;
-      padding: 0.8rem 1.8rem;
-      background: #38bdf8;
-      color: #020617;
-      text-decoration: none;
-      border-radius: 999px;
-      font-weight: 700;
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
-
-    .btn:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 12px 25px rgba(56,189,248,0.5);
-    }
-
-    /* ---------- SECCIONES ---------- */
-    section {
-      margin-top: 4rem;
-      animation: slideUp 1s ease;
-    }
-
-    section h2 {
-      font-size: 2rem;
-      margin-bottom: 1rem;
-      border-left: 5px solid #38bdf8;
-      padding-left: 1rem;
-    }
-
-    section p {
-      max-width: 850px;
-      margin-bottom: 1rem;
-      color: #cbd5f5;
-    }
-
-    ul {
-      margin-left: 1.5rem;
-      margin-top: 1rem;
-    }
-
-    li {
-      margin-bottom: 0.6rem;
-    }
-
-    /* ---------- WHATSAPP ---------- */
-    .whatsapp {
-      position: fixed;
-      bottom: 22px;
-      right: 22px;
-      background: #25D366;
-      color: white;
-      width: 58px;
-      height: 58px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 26px;
-      text-decoration: none;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.4);
-      transition: transform 0.2s;
-      z-index: 1000;
-    }
-
-    .whatsapp:hover {
-      transform: scale(1.1);
-    }
-
-    /* ---------- ANIMACIONES ---------- */
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-
-    @keyframes slideUp {
-      from { opacity: 0; transform: translateY(30px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    /* ---------- RESPONSIVE ---------- */
-    @media (max-width: 768px) {
-      .profile {
-        text-align: center;
-        justify-content: center;
-      }
-    }
-  </style>
+        /* WhatsApp */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 100;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+        .whatsapp-float:hover {
+            transform: scale(1.1) rotate(5deg);
+        }
+    </style>
 </head>
+<body class="relative selection:bg-blue-100 selection:text-blue-900">
 
-<body>
+    <!-- Fondos Decorativos -->
+    <div class="blob-bg bg-blue-200 w-[500px] h-[500px] rounded-full top-[-100px] left-[-100px]"></div>
+    <div class="blob-bg bg-indigo-100 w-[600px] h-[600px] rounded-full top-[20%] right-[-200px]"></div>
+    <div class="blob-bg bg-green-50 w-[400px] h-[400px] rounded-full bottom-[10%] left-[10%]"></div>
 
-  <!-- =====================================================
-       HEADER / PERFIL PRINCIPAL
-       ===================================================== -->
-  <header class="container">
-    <div class="profile">
+    <!-- 
+    =======================================================================
+    🧭 NAV
+    =======================================================================
+    -->
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 glass-nav h-20 flex items-center">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+            <div class="flex justify-between items-center">
+                <a href="#" class="text-xl font-bold text-slate-800 tracking-tight flex items-center gap-2">
+                    <div class="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center text-white font-bold">P</div>
+                    Portfolio<span class="text-blue-600">Docente</span>
+                </a>
 
-      <!-- FOTO DE PERFIL
-           👉 Subí una imagen llamada: foto.jpg -->
-      <img src="foto.jpg" alt="Foto de perfil">
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-8 items-center text-sm font-medium">
+                    <a href="#inicio" class="text-slate-600 hover:text-blue-600 transition">Inicio</a>
+                    <a href="#sobre-mi" class="text-slate-600 hover:text-blue-600 transition">Sobre Mí</a>
+                    <a href="#propuesta" class="text-slate-600 hover:text-blue-600 transition">Propuesta</a>
+                    <a href="#formacion" class="text-slate-600 hover:text-blue-600 transition">Formación</a>
+                    <a href="#experiencia" class="text-slate-600 hover:text-blue-600 transition">Experiencia</a>
+                    <a href="cv.pdf" download class="px-5 py-2.5 bg-slate-900 text-white rounded-full hover:bg-slate-800 transition shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"> Descargar CV </a>
+                </div>
 
-      <!-- DATOS PRINCIPALES -->
-      <div>
-        <h1>Luis Arguello</h1>
-        <p>Docente de Robótica y Programación Educativa</p>
+                <!-- Mobile Menu Button -->
+                <button id="menu-btn" class="md:hidden text-slate-800 p-2">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                </button>
+            </div>
+        </div>
 
-        <!-- BOTÓN DESCARGA CV
-             👉 Subí el PDF como: CV_Luis_Arguello.pdf -->
-        <a href="CV_Luis_Arguello.pdf" download class="btn">
-          Descargar CV en PDF
-        </a>
-      </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden absolute top-20 left-0 w-full bg-white/95 backdrop-blur-xl border-t border-gray-100 shadow-xl p-4 flex flex-col gap-2 md:hidden">
+            <a href="#inicio" class="p-3 text-slate-600 hover:bg-blue-50 rounded-lg font-medium">Inicio</a>
+            <a href="#sobre-mi" class="p-3 text-slate-600 hover:bg-blue-50 rounded-lg font-medium">Sobre Mí</a>
+            <a href="#propuesta" class="p-3 text-slate-600 hover:bg-blue-50 rounded-lg font-medium">Propuesta Educativa</a>
+            <a href="#formacion" class="p-3 text-slate-600 hover:bg-blue-50 rounded-lg font-medium">Formación</a>
+            <a href="#" class="p-3 text-blue-600 bg-blue-50 rounded-lg font-bold text-center mt-2">Descargar CV PDF</a>
+        </div>
+    </nav>
 
-    </div>
-  </header>
+    <main>
+        <!-- 
+        =======================================================================
+        👋 INICIO (HEADER)
+        =======================================================================
+        -->
+        <header id="inicio" class="pt-32 pb-20 md:pt-48 md:pb-32 px-4 relative max-w-7xl mx-auto">
+            <div class="grid md:grid-cols-2 gap-16 items-center">
+                <div class="animate-on-scroll">
+                    <!-- ✏️ [EDITAR]: Nombre y Rol -->
+                    <div class="inline-flex items-center gap-2 px-3 py-1 bg-blue-100/50 border border-blue-200 text-blue-700 rounded-full text-xs font-bold uppercase tracking-wide mb-6">
+                        <span class="w-2 h-2 bg-blue-600 rounded-full animate-pulse"></span>
+                        Docente Innovador
+                    </div>
+                    
+                    <h1 class="text-4xl md:text-6xl font-extrabold text-slate-900 leading-tight mb-6">
+                        Luis Mathias <br>
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-teal-500">Argüello</span>
+                    </h1>
+                    
+                    <h2 class="text-xl md:text-2xl text-slate-600 font-medium mb-6">
+                        Capacitador de Robótica y Programación Educativa
+                    </h2>
+                    
+                    <p class="text-lg text-slate-500 mb-8 leading-relaxed max-w-lg">
+                        Diseño experiencias de aprendizaje que transforman a los estudiantes de consumidores a creadores de tecnología, fomentando el pensamiento crítico y la creatividad digital.
+                    </p>
 
-  <!-- =====================================================
-       SOBRE MÍ
-       ===================================================== -->
-  <section class="container">
-    <h2>Sobre mí</h2>
-    <p>
-      Docente especializado en Robótica y Programación Educativa, con enfoque en
-      metodologías activas, aprendizaje basado en proyectos y pensamiento computacional.
-      Diseño propuestas pedagógicas adaptadas a los niveles primario y secundario,
-      promoviendo el uso responsable y significativo de la tecnología en el ámbito escolar.
-    </p>
-  </section>
+                    <div class="flex gap-4">
+                        <a href="#" class="px-7 py-3.5 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-semibold transition shadow-lg hover:shadow-blue-500/30">
+                            Descargar CV
+                        </a>
+                        <a href="#contacto" class="px-7 py-3.5 bg-white border border-slate-200 text-slate-700 hover:border-blue-300 hover:text-blue-600 rounded-xl font-semibold transition">
+                            Contactar
+                        </a>
+                    </div>
+                </div>
 
-  <!-- =====================================================
-       NIVEL PRIMARIO
-       ===================================================== -->
-  <section class="container">
-    <h2>Nivel Primario</h2>
+                <div class="relative flex justify-center md:justify-end animate-on-scroll" style="animation-delay: 0.2s;">
+                    <div class="relative w-72 h-72 md:w-[400px] md:h-[400px]">
+                        <!-- Anillos decorativos -->
+                        <div class="absolute inset-0 border-2 border-dashed border-slate-200 rounded-full animate-[spin_10s_linear_infinite]"></div>
+                        <div class="absolute inset-4 border border-blue-100 rounded-full"></div>
+                        
+                        <!-- ✏️ [EDITAR]: Foto de Perfil -->
+                        <img src="foto-perfil.jpg" 
+                        alt="Foto Perfil Docente" 
+                        class="absolute inset-6 w-[calc(100%-3rem)] h-[calc(100%-3rem)] object-cover rounded-full shadow-2xl ring-4 ring-white">
 
-    <h3>Programación</h3>
-    <ul>
-      <li>Pensamiento computacional</li>
-      <li>Secuencias, bucles y condicionales simples</li>
-      <li>Programación por bloques (Scratch)</li>
-    </ul>
+                        <!-- Badge Flotante -->
+                        <div class="absolute bottom-10 -left-6 bg-white/90 backdrop-blur p-4 rounded-2xl shadow-xl border border-white flex items-center gap-3 animate-bounce" style="animation-duration: 4s;">
+                            <div class="bg-green-100 p-2 rounded-lg text-green-600">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            </div>
+                            <div>
+                                <p class="text-xs text-slate-500 font-bold uppercase">Estado</p>
+                                <p class="text-sm font-bold text-slate-800">Disponible 2026</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
 
-    <h3>Robótica Educativa</h3>
-    <ul>
-      <li>Introducción a la robótica</li>
-      <li>Relación entre código y movimiento</li>
-      <li>Uso de simuladores y kits educativos</li>
-    </ul>
-  </section>
+        <!-- 
+        =======================================================================
+        👤 SOBRE MÍ
+        =======================================================================
+        -->
+        <section id="sobre-mi" class="py-20 bg-white/50">
+            <div class="max-w-4xl mx-auto px-4">
+                <div class="text-center mb-16 animate-on-scroll">
+                    <h2 class="text-3xl font-bold text-slate-900">Sobre Mí</h2>
+                    <div class="w-16 h-1 bg-blue-600 mx-auto mt-4 rounded-full"></div>
+                </div>
 
-  <!-- =====================================================
-       NIVEL SECUNDARIO
-       ===================================================== -->
-  <section class="container">
-    <h2>Nivel Secundario</h2>
+                <div class="prose prose-lg prose-slate mx-auto text-center mb-12 animate-on-scroll">
+                    <p class="leading-relaxed text-slate-600">
+                        Soy un educador apasionado por la intersección entre pedagogía y tecnología. Mi objetivo es democratizar el acceso al conocimiento técnico, preparando a las nuevas generaciones no solo para usar la tecnología, sino para entenderla y crearla con propósito ético y social.
+                    </p>
+                </div>
 
-    <h3>Programación</h3>
-    <ul>
-      <li>Algoritmos y diagramas de flujo</li>
-      <li>Variables, estructuras de control</li>
-      <li>Introducción a Python</li>
-    </ul>
+                <div class="grid md:grid-cols-3 gap-6 animate-on-scroll">
+                    <!-- Valores -->
+                    <div class="glass-card p-6 rounded-2xl text-center hover:bg-white transition">
+                        <div class="w-12 h-12 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center mx-auto mb-4">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+                        </div>
+                        <h3 class="font-bold text-slate-800 mb-2">Enfoque Pedagógico</h3>
+                        <p class="text-sm text-slate-500">Constructivismo y Aprendizaje Basado en Proyectos (ABP).</p>
+                    </div>
 
-    <h3>Robótica con Arduino</h3>
-    <ul>
-      <li>Electrónica básica</li>
-      <li>Uso de sensores y actuadores</li>
-      <li>Programación en Arduino IDE</li>
-    </ul>
-  </section>
+                    <div class="glass-card p-6 rounded-2xl text-center hover:bg-white transition">
+                        <div class="w-12 h-12 bg-indigo-50 text-indigo-600 rounded-xl flex items-center justify-center mx-auto mb-4">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                        </div>
+                        <h3 class="font-bold text-slate-800 mb-2">Innovación</h3>
+                        <p class="text-sm text-slate-500">Integración de herramientas digitales para potenciar el aula.</p>
+                    </div>
 
-  <!-- =====================================================
-       PROYECTOS PROPUESTOS
-       ===================================================== -->
-  <section class="container">
-    <h2>Proyectos Educativos Propuestos</h2>
+                    <div class="glass-card p-6 rounded-2xl text-center hover:bg-white transition">
+                        <div class="w-12 h-12 bg-teal-50 text-teal-600 rounded-xl flex items-center justify-center mx-auto mb-4">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+                        </div>
+                        <h3 class="font-bold text-slate-800 mb-2">Valores</h3>
+                        <p class="text-sm text-slate-500">Colaboración, resiliencia ante el error y ciudadanía digital.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-    <p>
-      Los siguientes proyectos están pensados como propuestas pedagógicas
-      que pueden ser implementadas en el ámbito educativo, integrando
-      contenidos de robótica, programación y tecnología.
-    </p>
+        <!-- 
+        =======================================================================
+        📚 PROPUESTA EDUCATIVA
+        =======================================================================
+        -->
+        <section id="propuesta" class="py-20 relative">
+            <div class="absolute inset-0 bg-slate-50 -z-10 clip-path-slant"></div>
+            <div class="max-w-6xl mx-auto px-4">
+                <div class="text-center mb-12 animate-on-scroll">
+                    <h2 class="text-3xl font-bold text-slate-900">Propuesta Educativa</h2>
+                    <p class="text-slate-500 mt-4 max-w-2xl mx-auto">
+                        Planificación curricular adaptada a los Núcleos de Aprendizajes Prioritarios (NAP) y estándares internacionales.
+                    </p>
+                </div>
 
-    <ul>
-      <li><strong>Semáforo Inteligente:</strong> control lógico con Arduino.</li>
-      <li><strong>Estación Meteorológica Escolar:</strong> sensores y análisis de datos.</li>
-      <li><strong>Videojuego Educativo:</strong> desarrollo en Scratch o Python.</li>
-    </ul>
-  </section>
+                <!-- Tabs Navigation -->
+                <div class="flex justify-center mb-10 animate-on-scroll">
+                    <div class="bg-white p-1 rounded-xl shadow-sm border border-slate-200 inline-flex">
+                        <button onclick="switchTab('primaria')" id="btn-primaria" class="px-8 py-3 rounded-lg text-sm font-bold transition-all bg-blue-600 text-white shadow-md">
+                            Nivel Primario
+                        </button>
+                        <button onclick="switchTab('secundaria')" id="btn-secundaria" class="px-8 py-3 rounded-lg text-sm font-bold text-slate-500 hover:text-blue-600 transition-all">
+                            Nivel Secundario
+                        </button>
+                    </div>
+                </div>
 
-  <!-- =====================================================
-       WHATSAPP FLOTANTE
-       ===================================================== -->
-  <!-- 👉 Reemplazá el número por el tuyo: 549XXXXXXXXXX -->
-  <a href="https://wa.me/549XXXXXXXXXX" target="_blank" class="whatsapp">
-    💬
-  </a>
+                <!-- CONTENIDO PRIMARIA -->
+                <div id="tab-primaria" class="animate-on-scroll">
+                    <div class="grid md:grid-cols-12 gap-8">
+                        <!-- Izquierda: Info -->
+                        <div class="md:col-span-8 space-y-6">
+                            <!-- Objetivos -->
+                            <div class="glass-card p-8 rounded-2xl border-l-4 border-l-blue-500">
+                                <h3 class="text-xl font-bold text-slate-800 mb-4 flex items-center gap-2">
+                                    <svg class="w-5 h-5 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                    Objetivos de Enseñanza
+                                </h3>
+                                <ul class="space-y-2 text-slate-600 text-sm">
+                                    <li>• Fomentar la curiosidad y el pensamiento lógico a través del juego.</li>
+                                    <li>• Introducir conceptos básicos de algoritmos y secuencias.</li>
+                                    <li>• Desarrollar la motricidad fina mediante el armado de modelos robóticos.</li>
+                                </ul>
+                            </div>
 
+                            <!-- Contenidos -->
+                            <div class="grid md:grid-cols-2 gap-6">
+                                <div class="glass-card p-6 rounded-2xl">
+                                    <h4 class="font-bold text-slate-800 mb-3 text-sm uppercase tracking-wide">Programación</h4>
+                                    <ul class="text-sm text-slate-600 space-y-2">
+                                        <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-blue-400 rounded-full"></span>Scratch Jr. & Scratch 3.0</li>
+                                        <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-blue-400 rounded-full"></span>Pilas Bloques</li>
+                                        <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-blue-400 rounded-full"></span>Narración digital interactiva</li>
+                                    </ul>
+                                </div>
+                                <div class="glass-card p-6 rounded-2xl">
+                                    <h4 class="font-bold text-slate-800 mb-3 text-sm uppercase tracking-wide">Robótica</h4>
+                                    <ul class="text-sm text-slate-600 space-y-2">
+                                        <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-orange-400 rounded-full"></span>LEGO Education WeDo 2.0</li>
+                                        <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-orange-400 rounded-full"></span>Kits Rasti</li>
+                                        <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-orange-400 rounded-full"></span>Máquinas simples y motores</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Derecha: Metodología y Proyecto -->
+                        <div class="md:col-span-4 space-y-6">
+                            <div class="bg-blue-600 text-white p-8 rounded-2xl shadow-lg">
+                                <h3 class="font-bold text-lg mb-2">Metodología</h3>
+                                <p class="text-blue-100 text-sm leading-relaxed mb-4">
+                                    Ludificación y exploración guiada. El error se celebra como una oportunidad de aprendizaje en un entorno seguro.
+                                </p>
+                                <div class="border-t border-blue-500 pt-4 mt-4">
+                                    <h4 class="font-bold text-sm mb-2 opacity-90">Proyecto a Implementar</h4>
+                                    <p class="text-xs text-blue-100">"La Ciudad Sustentable": Maqueta programada con semáforos y barreras automatizadas utilizando sensores básicos.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CONTENIDO SECUNDARIA -->
+                <div id="tab-secundaria" class="hidden animate-on-scroll">
+                    <div class="grid md:grid-cols-12 gap-8">
+                        <!-- Izquierda: Info -->
+                        <div class="md:col-span-8 space-y-6">
+                            <!-- Objetivos -->
+                            <div class="glass-card p-8 rounded-2xl border-l-4 border-l-indigo-500">
+                                <h3 class="text-xl font-bold text-slate-800 mb-4 flex items-center gap-2">
+                                    <svg class="w-5 h-5 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path></svg>
+                                    Objetivos de Enseñanza
+                                </h3>
+                                <ul class="space-y-2 text-slate-600 text-sm">
+                                    <li>• Profundizar en lógica de programación estructurada y orientada a objetos.</li>
+                                    <li>• Diseñar soluciones tecnológicas a problemáticas reales (ABP).</li>
+                                    <li>• Introducir conceptos de electrónica, IoT y diseño 3D.</li>
+                                </ul>
+                            </div>
+
+                            <!-- Contenidos -->
+                            <div class="grid md:grid-cols-2 gap-6">
+                                <div class="glass-card p-6 rounded-2xl">
+                                    <h4 class="font-bold text-slate-800 mb-3 text-sm uppercase tracking-wide">Programación</h4>
+                                    <ul class="text-sm text-slate-600 space-y-2">
+                                        <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-indigo-400 rounded-full"></span>Python & C++</li>
+                                        <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-indigo-400 rounded-full"></span>Desarrollo Web (HTML/CSS)</li>
+                                        <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-indigo-400 rounded-full"></span>Bases de Datos Introductorias</li>
+                                    </ul>
+                                </div>
+                                <div class="glass-card p-6 rounded-2xl">
+                                    <h4 class="font-bold text-slate-800 mb-3 text-sm uppercase tracking-wide">Robótica & IoT</h4>
+                                    <ul class="text-sm text-slate-600 space-y-2">
+                                        <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-purple-400 rounded-full"></span>Plataforma Arduino (C++)</li>
+                                        <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-purple-400 rounded-full"></span>Sensores y Actuadores</li>
+                                        <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-purple-400 rounded-full"></span>Diseño e Impresión 3D</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Derecha: Metodología y Proyecto -->
+                        <div class="md:col-span-4 space-y-6">
+                            <div class="bg-indigo-600 text-white p-8 rounded-2xl shadow-lg">
+                                <h3 class="font-bold text-lg mb-2">Metodología</h3>
+                                <p class="text-indigo-100 text-sm leading-relaxed mb-4">
+                                    Cultura Maker (Hacedor) y Aprendizaje Basado en Problemas. Trabajo colaborativo simulando equipos de desarrollo real.
+                                </p>
+                                <div class="border-t border-indigo-500 pt-4 mt-4">
+                                    <h4 class="font-bold text-sm mb-2 opacity-90">Proyecto a Implementar</h4>
+                                    <p class="text-xs text-indigo-100">"Estación Meteorológica Escolar": Dispositivo IoT que mide variables ambientales y publica datos en una web en tiempo real.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 
+        =======================================================================
+        🎓 FORMACIÓN ACADÉMICA
+        =======================================================================
+        -->
+        <section id="formacion" class="py-20 bg-white">
+            <div class="max-w-4xl mx-auto px-4">
+                <div class="text-center mb-16 animate-on-scroll">
+                    <h2 class="text-3xl font-bold text-slate-900">Formación Académica</h2>
+                    <p class="text-slate-500 mt-2">Base sólida pedagógica y técnica continua.</p>
+                </div>
+
+                <div class="relative border-l-2 border-slate-200 ml-3 space-y-12 animate-on-scroll">
+                    <!-- Item 1 -->
+                    <div class="relative pl-8 group">
+                        <span class="absolute -left-[9px] top-2 w-4 h-4 rounded-full bg-white border-4 border-blue-600 group-hover:scale-125 transition"></span>
+                        <h3 class="text-xl font-bold text-slate-800">Profesor en Matemáticas - Año 2010</h3>
+                        <p class="text-slate-600">Instituto Superior Dr. Rene Favaloro</p>
+                        <span class="inline-block px-2 py-1 bg-blue-50 text-blue-700 text-xs font-bold rounded mt-2">Graduado</span>
+                    </div>
+
+                    <!-- Item 2 -->
+                    <div class="relative pl-8 group">
+                        <span class="absolute -left-[9px] top-2 w-4 h-4 rounded-full bg-white border-4 border-slate-400 group-hover:scale-125 transition"></span>
+                        <h3 class="text-xl font-bold text-slate-800">Tecnicatura Superior en Desarrollo de Software</h3>
+                        <p class="text-slate-600">Instituto Superior Dr. Rene Favaloro</p>
+                        <span class="inline-block px-2 py-1 bg-slate-100 text-slate-600 text-xs font-bold rounded mt-2">Estudiante Avanzado</span>
+                    </div>
+
+                    <!-- Cursos -->
+                    <div class="relative pl-8">
+                        <span class="absolute -left-[9px] top-2 w-4 h-4 rounded-full bg-slate-200"></span>
+                        <h3 class="text-lg font-bold text-slate-700 mb-4">Capacitaciones y Cursos</h3>
+                        <div class="grid sm:grid-cols-2 gap-4">
+                            <div class="bg-slate-50 p-4 rounded-lg border border-slate-100">
+                                <p class="font-bold text-sm text-slate-800">Diplomatura Universitaria en Ciencias de Datos - Año 2025</p>
+                                <p class="text-xs text-slate-500">FaCENA / UNNE</p>
+                            </div>
+                            <div class="bg-slate-50 p-4 rounded-lg border border-slate-100">
+                                <p class="font-bold text-sm text-slate-800">Diplomado en Rol Docente en la Educación Superior a Distancia - Año 2020</p>
+                                <p class="text-xs text-slate-500">UTN</p>
+                            </div>
+                            <div class="bg-slate-50 p-4 rounded-lg border border-slate-100">
+                                <p class="font-bold text-sm text-slate-800">Introducción a la Programación - Año 2020</p>
+                                <p class="text-xs text-slate-500">Informatorio</p>
+                            </div>
+                            <div class="bg-slate-50 p-4 rounded-lg border border-slate-100">
+                                <p class="font-bold text-sm text-slate-800">Especialización Docente de Nivel Superior en Educación y TIC - Año 2015</p>
+                                <p class="text-xs text-slate-500">Ministerio de Educación de la Nación</p>
+                            </div>
+                            <div class="bg-slate-50 p-4 rounded-lg border border-slate-100">
+                                <p class="font-bold text-sm text-slate-800">Seminario de Oratoria - Año 2014</p>
+                                <p class="text-xs text-slate-500">UNNE</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 
+        =======================================================================
+        🏫 EXPERIENCIA EDUCATIVA
+        =======================================================================
+        -->
+        <section id="experiencia" class="py-20 bg-slate-50">
+            <div class="max-w-4xl mx-auto px-4">
+                <div class="text-center mb-16 animate-on-scroll">
+                    <h2 class="text-3xl font-bold text-slate-900">Experiencia Educativa</h2>
+                </div>
+
+                <div class="grid gap-6 animate-on-scroll">
+                    <!-- Experiencia 1 -->
+                    <div class="glass-card p-8 rounded-2xl flex flex-col md:flex-row gap-6 items-start">
+                        <div class="w-16 h-16 bg-blue-100 text-blue-600 rounded-2xl flex items-center justify-center shrink-0">
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
+                        </div>
+                        <div class="flex-1">
+                            <div class="flex justify-between items-start mb-2">
+                                <div>
+                                    <h3 class="text-xl font-bold text-slate-800">IFP Portal Educativo Chaco - UEGP N° 215</h3>
+                                    <p class="text-slate-600 font-medium">Capacitador en Robótica y Programación</p>
+                                </div>
+                                <span class="bg-slate-100 text-slate-600 px-3 py-1 rounded-full text-xs font-bold">2015 - 2024</span>
+                            </div>
+                            <p class="text-slate-600 text-sm leading-relaxed">
+                                Diseñé e impartí cursos prácticos de programación y robótica, guiando proyectos aplicados con kits tecnológicos y software educativo para fomentar el aprendizaje activo.
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Experiencia 2 -->
+                    <div class="glass-card p-8 rounded-2xl flex flex-col md:flex-row gap-6 items-start opacity-90 hover:opacity-100 transition">
+                        <div class="w-16 h-16 bg-slate-100 text-slate-500 rounded-2xl flex items-center justify-center shrink-0">
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z"></path></svg>
+                        </div>
+                        <div class="flex-1">
+                            <div class="flex justify-between items-start mb-2">
+                                <div>
+                                    <h3 class="text-xl font-bold text-slate-800">Desarrollador de Software</h3>
+                                    <p class="text-slate-600 font-medium">Freelancer</p>
+                                </div>
+                                <span class="bg-slate-100 text-slate-600 px-3 py-1 rounded-full text-xs font-bold">Desde 2020</span>
+                            </div>
+                            <p class="text-slate-600 text-sm leading-relaxed">
+                                Desarrollo de soluciones web fullstack y aplicaciones móviles, abarcando desde el diseño de interfaces hasta la implementación de bases de datos y servicios en la nube.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+                    <!-- Experiencia 3 -->
+                    <div class="glass-card p-8 rounded-2xl flex flex-col md:flex-row gap-6 items-start opacity-90 hover:opacity-100 transition">
+                        <div class="w-16 h-16 bg-slate-100 text-slate-500 rounded-2xl flex items-center justify-center shrink-0">
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z"></path></svg>
+                        </div>
+                        <div class="flex-1">
+                            <div class="flex justify-between items-start mb-2">
+                                <div>
+                                    <h3 class="text-xl font-bold text-slate-800">E.E.S. N° 90</h3>
+                                    <p class="text-slate-600 font-medium">Administrador de Red</p>
+                                </div>
+                                <span class="bg-slate-100 text-slate-600 px-3 py-1 rounded-full text-xs font-bold">2012 - 2014</span>
+                            </div>
+                            <p class="text-slate-600 text-sm leading-relaxed">
+                                Creación y control de cuentas, permisos y accesos para docentes, estudiantes y personal administrativo. Capacitación docente en herramientas digitales.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 
+        =======================================================================
+        🛠 COMPETENCIAS
+        =======================================================================
+        -->
+        <section class="py-20 bg-white border-t border-slate-100">
+            <div class="max-w-5xl mx-auto px-4">
+                <div class="text-center mb-12 animate-on-scroll">
+                    <h2 class="text-3xl font-bold text-slate-900">Competencias</h2>
+                </div>
+                
+                <div class="grid md:grid-cols-3 gap-8 animate-on-scroll">
+                    <!-- Técnicas -->
+                    <div>
+                        <h3 class="text-lg font-bold text-slate-800 mb-6 flex items-center gap-2">
+                            <span class="w-2 h-6 bg-blue-600 rounded-full"></span>Técnicas Educativas
+                        </h3>
+                        <div class="space-y-4">
+                            <div>
+                                <div class="flex justify-between text-xs font-semibold mb-1">
+                                    <span>Arduino / C++</span>
+                                    <span class="text-blue-600">Avanzado</span>
+                                </div>
+                                <div class="w-full bg-slate-100 rounded-full h-2"><div class="bg-blue-600 h-2 rounded-full" style="width: 90%"></div></div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-xs font-semibold mb-1">
+                                    <span>Python</span>
+                                    <span class="text-blue-600">Intermedio</span>
+                                </div>
+                                <div class="w-full bg-slate-100 rounded-full h-2"><div class="bg-blue-600 h-2 rounded-full" style="width: 75%"></div></div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-xs font-semibold mb-1">
+                                    <span>Scratch / Bloques</span>
+                                    <span class="text-blue-600">Experto</span>
+                                </div>
+                                <div class="w-full bg-slate-100 rounded-full h-2"><div class="bg-blue-600 h-2 rounded-full" style="width: 100%"></div></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Pedagógicas -->
+                    <div>
+                        <h3 class="text-lg font-bold text-slate-800 mb-6 flex items-center gap-2">
+                            <span class="w-2 h-6 bg-indigo-600 rounded-full"></span>Pedagógicas
+                        </h3>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1.5 bg-indigo-50 text-indigo-700 text-sm font-medium rounded-lg">Planificación Curricular</span>
+                            <span class="px-3 py-1.5 bg-indigo-50 text-indigo-700 text-sm font-medium rounded-lg">Evaluación por Rúbricas</span>
+                            <span class="px-3 py-1.5 bg-indigo-50 text-indigo-700 text-sm font-medium rounded-lg">Gestión de Aula Heterogénea</span>
+                            <span class="px-3 py-1.5 bg-indigo-50 text-indigo-700 text-sm font-medium rounded-lg">ABP</span>
+                        </div>
+                    </div>
+
+                    <!-- Blandas -->
+                    <div>
+                        <h3 class="text-lg font-bold text-slate-800 mb-6 flex items-center gap-2">
+                            <span class="w-2 h-6 bg-teal-500 rounded-full"></span>Blandas
+                        </h3>
+                        <ul class="space-y-3 text-sm text-slate-600">
+                            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-teal-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Empatía y Escucha Activa</li>
+                            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-teal-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Trabajo Colaborativo</li>
+                            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-teal-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Adaptabilidad al Cambio</li>
+                            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-teal-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Comunicación Asertiva</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 
+    =======================================================================
+    🦶 FOOTER (CONTACTO)
+    =======================================================================
+    -->
+    <footer id="contacto" class="bg-slate-900 text-slate-400 py-12 border-t border-slate-800">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="grid md:grid-cols-2 gap-8 items-center">
+                <div>
+                    <h3 class="text-white text-xl font-bold mb-4">Contacto Profesional</h3>
+                    <p class="mb-6 text-sm">
+                        Disponible para entrevistas y reuniones informativas.
+                    </p>
+                    <div class="space-y-3">
+                        <a href="mailto:juan.rodriguez@email.com" class="flex items-center gap-3 hover:text-white transition">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                            aluismathias@gmail.com
+                        </a>
+                    </div>
+                </div>
+                <div class="md:text-right">
+                    <a href="cv.pdf" download class="inline-block px-6 py-3 border border-slate-700 rounded-lg text-sm hover:bg-slate-800 hover:text-white transition mb-4"> 📄 Descargar CV en PDF </a>
+                    <p class="text-xs text-slate-600">
+                        &copy; 2025 Argüello Luis Mathias.<br>
+                        Diseño Web Educativo.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Float -->
+    <!-- ✏️ [EDITAR]: Número de teléfono -->
+    <a href="https://wa.me/5493644452880" target="_blank" class="whatsapp-float bg-[#25D366] text-white p-4 rounded-full flex items-center justify-center hover:bg-[#20bd5a]" title="Contactar por WhatsApp">
+        <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.017-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+    </a>
+
+    <!-- Scripts -->
+    <script>
+        // Mobile Menu Toggle
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Tabs System
+        function switchTab(tabId) {
+            document.getElementById('tab-primaria').classList.add('hidden');
+            document.getElementById('tab-secundaria').classList.add('hidden');
+            document.getElementById('btn-primaria').className = "px-8 py-3 rounded-lg text-sm font-bold transition-all text-slate-500 hover:text-blue-600";
+            document.getElementById('btn-secundaria').className = "px-8 py-3 rounded-lg text-sm font-bold transition-all text-slate-500 hover:text-blue-600";
+
+            document.getElementById('tab-' + tabId).classList.remove('hidden');
+            document.getElementById('btn-' + tabId).className = "px-8 py-3 rounded-lg text-sm font-bold transition-all bg-blue-600 text-white shadow-md";
+            
+            // Re-trigger animation
+            const content = document.getElementById('tab-' + tabId);
+            content.classList.remove('animate-on-scroll');
+            void content.offsetWidth;
+            content.classList.add('animate-on-scroll', 'is-visible');
+        }
+
+        // Scroll Observer
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
+    </script>
 </body>
 </html>
