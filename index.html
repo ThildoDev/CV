@@ -89,6 +89,19 @@
             transform: scale(1.1) rotate(5deg);
         }
     </style>
+     <script defer> 
+        const textos = [ 
+        "Capacitador en Robótica",
+        "Programación y proyectos aplicados",
+        "Desarrollo Web Fullstack", 
+        "Apps móviles educativas"
+        ]; 
+        let i = 0; 
+        setInterval(() => { 
+            document.getElementById("badge-text").textContent = textos[i]; 
+            i = (i + 1) % textos.length; 
+        }, 3000); 
+    </script>
 </head>
 <body class="relative selection:bg-blue-100 selection:text-blue-900">
 
@@ -187,14 +200,19 @@
                         class="absolute inset-6 w-[calc(100%-3rem)] h-[calc(100%-3rem)] object-cover rounded-full shadow-2xl ring-4 ring-white">
 
                         <!-- Badge Flotante -->
-                        <div class="absolute bottom-10 -left-6 bg-white/90 backdrop-blur p-4 rounded-2xl shadow-xl border border-white flex items-center gap-3 animate-bounce" style="animation-duration: 4s;">
-                            <div class="bg-green-100 p-2 rounded-lg text-green-600">
-                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                            </div>
-                            <div>
-                                <p class="text-xs text-slate-500 font-bold uppercase">Estado</p>
-                                <p class="text-sm font-bold text-slate-800">Disponible 2026</p>
-                            </div>
+                        <div id="badge"
+                            class="absolute bottom-4 right-4 bg-white/90 backdrop-blur p-4 rounded-2xl shadow-xl border border-white flex items-center gap-3 animate-bounce z-10" 
+                            style="animation-duration: 4s;"> 
+                         <div class="bg-indigo-100 p-2 rounded-lg text-indigo-600"> 
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"> 
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                                    d="M12 14l9-5-9-5-9 5 9 5zm0 0v6m0-6l-9-5m9 5l9-5" />
+                            </svg>
+                         </div> 
+                         <div> 
+                            <p class="text-xs text-slate-500 font-bold uppercase">Perfil destacado</p>
+                            <p id="badge-text" class="text-sm font-bold text-slate-800">Capacitador en Robótica</p>
+                         </div> 
                         </div>
                     </div>
                 </div>
